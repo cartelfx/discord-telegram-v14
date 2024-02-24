@@ -7,29 +7,17 @@ const botClient = new TelegramBot('6680581282:AAEg0Olv6XvxcoO4S1ax787vj5ouH299s1
 const cron = require("node-cron");
 
 client.on('messageCreate', message => {
-
     const prefixes = ['.', '!'];
-
     if (message.author.bot) return;
-
     const prefixUsed = prefixes.find(prefix => message.content.startsWith(prefix));
-
-    if (!prefixUsed) return;
-
+    if (!prefixUsed) return message.reply({ content: `Bir içerik belirtmelisin.`});
     const command = message.content.slice(prefixUsed.length).trim().split(/ +/).shift().toLowerCase();
-
     if (command === 'telegramgönder') {
-
         const args = message.content.slice(prefixUsed.length).trim().split(/ +/).slice(1);
-
         if (!args.length) return message.reply(`Bir içerik belirtmelisin.`)
-
-
-
+       
         const telegramMessage = args.join(' ');
-
         botClient.sendNotification(telegramMessage)
-
         message.reply('Mesajınız \`Telegram\` kanalına gönderildi!');
 
     }
