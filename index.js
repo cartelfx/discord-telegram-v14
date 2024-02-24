@@ -10,7 +10,7 @@ client.on('messageCreate', message => {
     const prefixes = ['.', '!'];
     if (message.author.bot) return;
     const prefixUsed = prefixes.find(prefix => message.content.startsWith(prefix));
-    if (!prefixUsed) return message.reply({ content: `Bir içerik belirtmelisin.`});
+    if (!prefixUsed) return;
     const command = message.content.slice(prefixUsed.length).trim().split(/ +/).shift().toLowerCase();
     if (command === 'telegramgönder') {
         const args = message.content.slice(prefixUsed.length).trim().split(/ +/).slice(1);
